@@ -32,7 +32,7 @@ for id in id_list:
         body = body[:body.index("Upgrade to premium")]
     body = body.split("\n")
     try:
-        with open("./Daily Coding Problem/Solutions/" + file_name + '.py', 'x') as file:
+        with open("./Solutions/" + file_name + '.py', 'x') as file:
             for line in body:
                 if len(line) > 1:
                     file.write("# " + line + '\n')
