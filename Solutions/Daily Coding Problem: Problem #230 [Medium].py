@@ -19,3 +19,27 @@
 # --------------------------------------------------------------------------------
 #
 #
+def find_lower_floor(N, k):
+    if N == 1:
+        return k
+
+    counter = N - 2
+    while N > 2:
+        N -= 1
+        tmp_k = k / 2
+        k = int(k / 2)
+        if tmp_k != k:
+            k += 1
+
+    i = 1
+    count = 1
+    while i < k:
+        count += 1
+        i += count
+    return count + counter
+
+
+assert find_lower_floor(1, 100) == 100
+assert find_lower_floor(2, 100) == 14
+assert find_lower_floor(3, 100) == 11
+assert find_lower_floor(4, 100) == 9
