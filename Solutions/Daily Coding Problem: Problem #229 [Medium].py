@@ -50,9 +50,9 @@ def find_smallest_number_of_turn(game):
                 new_position = game.check_snake_and_ladder(pos + i)
                 if new_position > 100:
                     continue
-                if new_position == 100:
+                elif new_position == 100:
                     return turn + 1
-                if new_position not in visited:
+                elif new_position not in visited:
                     visited.add(new_position)
                     tmp.append(new_position)
         return play_game(tmp, turn + 1)
