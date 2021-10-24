@@ -22,3 +22,25 @@
 # --------------------------------------------------------------------------------
 #
 #
+class PrefixMapSum(object):
+    def __init__(self):
+        super(PrefixMapSum, self).__init__()
+        self.dict = {}
+
+    def insert(self, key: str, value: int):
+        self.dict[key] = value
+
+    def sum(self, prefix: str):
+        sum_ = 0
+        for key in self.dict:
+            if key.startswith(prefix):
+                sum_ += self.dict[key]
+        return sum_
+
+
+mapsum = PrefixMapSum()
+mapsum.insert("columnar", 3)
+assert mapsum.sum("col") == 3
+
+mapsum.insert("column", 2)
+assert mapsum.sum("col") == 5
