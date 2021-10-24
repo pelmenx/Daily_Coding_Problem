@@ -16,7 +16,7 @@ def fib(n: int) -> int:
         elif n == 2:
             return 1
         else:
-            fib_que = [0, 1]
+            fib_que: list[int] = [0, 1]
             for _ in range(2, n):
                 fib_que = fib_que[-1:] + [sum(fib_que)]
             return fib_que[-1]
