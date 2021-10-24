@@ -49,7 +49,7 @@ def get_max_weight_span_tree(graph: Graph) -> int | float:
                 yield from find_max_weight_span_tree(value, visited, new_weight)
                 visited.remove(value)
 
-    nodes = list(graph.nodes.copy())
+    nodes = list(graph.nodes)
     max_weight: float | int = 0
     for node in nodes:
         for weight in find_max_weight_span_tree(node, {node}):
