@@ -18,9 +18,6 @@
 # --------------------------------------------------------------------------------
 #
 #
-from copy import deepcopy
-
-
 class Node(object):
     def __init__(self, arg: int):
         self.arg = arg
@@ -87,7 +84,6 @@ Graph.add_edge_angle(b, [e], [45])
 Graph.add_node(d, [f])
 Graph.add_edge_angle(d, [f], [135])
 
-New_Graph = deepcopy(Graph)
 
 assert is_symetric_tree(Graph) is True
 f.arg = 8
