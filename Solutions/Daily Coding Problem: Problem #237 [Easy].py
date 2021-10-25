@@ -44,13 +44,18 @@ class Tree_node(object):
             self.edge_angle[root, node] = angle
 
 
-def is_symetric_tree(graph1: Tree_node, graph2: Tree_node) -> bool:
+def is_symetric_tree(graph: Tree_node) -> bool:
     def is_symetric_tree_hepler(root1: Node, root2: Node) -> None:
-        if root1 in graph1.children and root2 in graph2.children:
-            if len(graph1.children[root1]) == len(graph2.children[root2]):
-                for node1, node2 in zip(graph1.children[root1], graph2.children[root2]):
+        print(root1, root2)
+        if root1 in graph.children and root2 in graph.children:
+            if len(graph.children[root1]) == len(graph.children[root2]):
+                length = len(graph.children[root1])
+                left_children = graph.children[root1][:length // 2 + 1] if length % 2 == 1 else graph.children[root1][:length // 2]
+                right_children = graph.children[root2][length // 2:] if length % 2 == 1 else graph.children[root2][length // 2:]
+                right_children.reverse()
+                for node1, node2 in zip(left_children, right_children):
                     if node1.arg == node2.arg:
-                        if graph1.edge_angle[root1, node1] == graph2.edge_angle[root2, node2]:
+                        if graph.edge_angle[root1, node1] == graph.max_angle - graph.edge_angle[root2, node2]:
                             yield from is_symetric_tree_hepler(node1, node2)
                         else:
                             yield False
@@ -58,26 +63,15 @@ def is_symetric_tree(graph1: Tree_node, graph2: Tree_node) -> bool:
                         yield False
             else:
                 yield False
-        elif root1 in graph1.children and root2 not in graph2.children:
+        elif root1 in graph.children and root2 not in graph.children:
             yield False
-        elif root1 not in graph1.children and root2 in graph2.children:
+        elif root1 not in graph.children and root2 in graph.children:
             yield False
 
-    for is_symetric in is_symetric_tree_hepler(graph1.root, graph2.root):
+    for is_symetric in is_symetric_tree_hepler(graph.root, graph.root):
         if not is_symetric:
             return False
     return True
-
-
-def reflect_graph(graph: Tree_node, root: Node) -> None:
-    if root in graph.children:
-        tmp = graph.children[root]
-        tmp.reverse()
-        graph.children[root] = tmp
-        for node in graph.children[root]:
-            graph.edge_angle[root, node] = graph.max_angle - graph.edge_angle[root, node]
-        for node in graph.children[root]:
-            reflect_graph(graph, node)
 
 
 a = Node(4)
@@ -98,11 +92,9 @@ Graph.add_edge_angle(d, [f], [135])
 
 New_Graph = deepcopy(Graph)
 
-reflect_graph(New_Graph, New_Graph.root)
-
-assert is_symetric_tree(Graph, New_Graph) is True
+assert is_symetric_tree(Graph) is True
 f.arg = 8
-assert is_symetric_tree(Graph, New_Graph) is False
+assert is_symetric_tree(Graph) is False
 f.arg = 9
 Graph.edge_angle[b, e] = 15
-assert is_symetric_tree(Graph, New_Graph) is False
+assert is_symetric_tree(Graph) is False
