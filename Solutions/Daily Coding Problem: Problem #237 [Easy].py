@@ -46,7 +46,6 @@ class Tree_node(object):
 
 def is_symetric_tree(graph: Tree_node) -> bool:
     def is_symetric_tree_hepler(root1: Node, root2: Node) -> None:
-        print(root1, root2)
         if root1 in graph.children and root2 in graph.children:
             if len(graph.children[root1]) == len(graph.children[root2]):
                 length = len(graph.children[root1])
@@ -98,3 +97,5 @@ assert is_symetric_tree(Graph) is False
 f.arg = 9
 Graph.edge_angle[b, e] = 15
 assert is_symetric_tree(Graph) is False
+Graph.edge_angle[d, f] = 165
+assert is_symetric_tree(Graph) is True
