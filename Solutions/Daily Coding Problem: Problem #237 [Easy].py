@@ -62,9 +62,7 @@ def is_symetric_tree(graph: Tree_node) -> bool:
                         yield False
             else:
                 yield False
-        elif root1 in graph.children and root2 not in graph.children:
-            yield False
-        elif root1 not in graph.children and root2 in graph.children:
+        elif root1 in graph.children and root2 not in graph.children or root1 not in graph.children and root2 in graph.children:
             yield False
 
     for is_symetric in is_symetric_tree_hepler(graph.root, graph.root):
