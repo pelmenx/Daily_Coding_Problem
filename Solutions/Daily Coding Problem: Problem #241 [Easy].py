@@ -18,11 +18,11 @@
 # --------------------------------------------------------------------------------
 #
 #
-def find_h_index(papers_list: list) -> int:
+def find_h_index(citations_list: list) -> int:
     h_index = 0
-    for item in papers_list:
+    for item in citations_list:
         h = 0
-        for citations in papers_list:
+        for citations in citations_list:
             if citations >= item:
                 h += 1
         if h >= item:
