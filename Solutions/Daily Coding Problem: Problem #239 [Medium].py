@@ -49,12 +49,12 @@ class Androin_keypad:
         self.digits_used.remove(digit)
 
 
-def generate_passwords(n: int, keypad: Androin_keypad):
+def generate_passwords(n: int, keypad: Androin_keypad) -> int | None:
     if n < 1 or n > 9:
         return None
 
-    def generate_possible_passwords(deapth: int, start: int):
-        if deapth == 1:
+    def generate_possible_passwords(start: int) -> int:
+        if len(keypad.password) == n:
             yield
         else:
             for end in range(1, 10):
@@ -62,16 +62,16 @@ def generate_passwords(n: int, keypad: Androin_keypad):
                     if (start, end) in keypad.invalid_pairs:
                         if keypad.invalid_pairs[(start, end)] in keypad.digits_used:
                             keypad.add_digit(end)
-                            yield from generate_possible_passwords(deapth - 1, end)
+                            yield from generate_possible_passwords(end)
                             keypad.remove_digit(end)
                     else:
                         keypad.add_digit(end)
-                        yield from generate_possible_passwords(deapth - 1, end)
+                        yield from generate_possible_passwords(end)
                         keypad.remove_digit(end)
     number_of_possible_passports = 0
     for i in range(1, 10):
         keypad.add_digit(i)
-        for _ in generate_possible_passwords(deapth=n, start=i):
+        for _ in generate_possible_passwords(start=i):
             number_of_possible_passports += 1
         keypad.remove_digit(i)
     return number_of_possible_passports
