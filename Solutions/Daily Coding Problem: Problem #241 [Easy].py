@@ -18,3 +18,16 @@
 # --------------------------------------------------------------------------------
 #
 #
+def find_h_index(papers_list: list) -> int:
+    h_index = 0
+    for item in papers_list:
+        h = 0
+        for citations in papers_list:
+            if citations >= item:
+                h += 1
+        if h >= item:
+            h_index = max(h_index, item)
+    return h_index
+
+
+find_h_index([4, 3, 0, 1, 5])
