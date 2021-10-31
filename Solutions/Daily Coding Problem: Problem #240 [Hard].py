@@ -16,10 +16,10 @@ from random import shuffle
 from collections import defaultdict
 
 
-def rearange_list(n: int) -> int:
+def rearrange_list(n: int) -> int:
     array = [*range(0, n)] * 2
     shuffle(array)
-    i = 0
+    i: int = 0
     counter = 0
     while i < len(array):
         for j in range(i + 2, len(array)):
@@ -31,9 +31,14 @@ def rearange_list(n: int) -> int:
     return counter
 
 
-for n in range(1, 20):
-    dd = defaultdict(int)
-    for i in range(100):
-        dd[rearange_list(n)] += 1
+def main():
+    for n in range(1, 20):
+        dd = defaultdict(int)
+        for i in range(100):
+            dd[rearrange_list(n)] += 1
 
-    assert max(dd) == n - 1
+        assert max(dd) == n - 1
+
+
+if __name__ == "main":
+    main()
