@@ -19,14 +19,13 @@
 # --------------------------------------------------------------------------------
 #
 #
-
 from collections.abc import Iterable
 
 
-class Android_Keypad:
+class AndroidKeypad:
     def __init__(self):
-        self.password = []
-        self.digits_used = set()
+        self.password: list[int] = []
+        self.digits_used: set[int] = set()
         self.invalid_pairs = {(1, 7): 4,
                               (1, 9): 5,
                               (1, 3): 2,
@@ -53,7 +52,7 @@ class Android_Keypad:
         self.digits_used.remove(digit)
 
 
-def generate_passwords(n: int, keypad: Android_Keypad) -> int | None:
+def generate_passwords(n: int, keypad: AndroidKeypad) -> int | None:
     if n < 1 or n > 9:
         return None
 
@@ -82,7 +81,7 @@ def generate_passwords(n: int, keypad: Android_Keypad) -> int | None:
     return number_of_possible_passports
 
 
-KEYPAD = Android_Keypad()
+KEYPAD = AndroidKeypad()
 assert generate_passwords(0, KEYPAD) is None
 assert generate_passwords(1, KEYPAD) == 9
 assert generate_passwords(2, KEYPAD) == 56
