@@ -19,7 +19,11 @@
 # --------------------------------------------------------------------------------
 #
 #
-class Androin_keypad:
+
+from collections.abc import Iterable
+
+
+class Android_Keypad:
     def __init__(self):
         self.password = []
         self.digits_used = set()
@@ -49,11 +53,11 @@ class Androin_keypad:
         self.digits_used.remove(digit)
 
 
-def generate_passwords(n: int, keypad: Androin_keypad) -> int | None:
+def generate_passwords(n: int, keypad: Android_Keypad) -> int | None:
     if n < 1 or n > 9:
         return None
 
-    def generate_possible_passwords(start: int) -> int:
+    def generate_possible_passwords(start: int) -> Iterable:
         if len(keypad.password) == n:
             yield
         else:
@@ -68,6 +72,7 @@ def generate_passwords(n: int, keypad: Androin_keypad) -> int | None:
                         keypad.add_digit(end)
                         yield from generate_possible_passwords(end)
                         keypad.remove_digit(end)
+
     number_of_possible_passports = 0
     for i in range(1, 10):
         keypad.add_digit(i)
@@ -77,7 +82,7 @@ def generate_passwords(n: int, keypad: Androin_keypad) -> int | None:
     return number_of_possible_passports
 
 
-KEYPAD = Androin_keypad()
+KEYPAD = Android_Keypad()
 assert generate_passwords(0, KEYPAD) is None
 assert generate_passwords(1, KEYPAD) == 9
 assert generate_passwords(2, KEYPAD) == 56
