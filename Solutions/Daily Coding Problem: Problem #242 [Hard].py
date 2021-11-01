@@ -17,3 +17,18 @@
 # --------------------------------------------------------------------------------
 #
 #
+class Subscribers:
+    def __init__(self):
+        self.subscribers_list = [0 for _ in range(24)]
+
+    def update(self, hour: int, value: int):
+        self.subscribers_list[hour] += value
+
+    def query(self, start: int, end: int) -> int:
+        return sum(self.subscribers_list[start:end + 1])
+
+
+subs = Subscribers()
+subs.update(2, 50)
+subs.update(5, 110)
+assert subs.query(1, 24) == 160
