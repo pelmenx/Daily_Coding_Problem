@@ -24,15 +24,15 @@ def Sieve_of_Eratosthenes(N):
     numbers_set = set([i for i in range(2, N)])
     for i in range(2, N // 2 + 1):
         j = 2
-        while j*i < N:
+        while j * i < N:
             numbers_set.discard(j * i)
             j += 1
     return numbers_set
 
 
 def next_prime_number(prime_numbers):
-    possible_number = prime_numbers[-1]+1
     yield prime_numbers[-1]
+    possible_number = prime_numbers[-1] + 1
     while True:
         for prime in prime_numbers:
             if possible_number % prime == 0:
