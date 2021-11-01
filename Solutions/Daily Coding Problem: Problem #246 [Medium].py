@@ -14,7 +14,7 @@
 #
 #
 def make_words_curcle(words_list: list[str]) -> bool:
-    def make_words_curcle_helper(array: list[str], words_curcle: list[str]) -> list[str]:
+    def make_words_curcle_helper(array: list[str], words_curcle: list[str]) -> None:
         if not array:
             if words_curcle[0][0] == words_curcle[-1][-1]:
                 yield
