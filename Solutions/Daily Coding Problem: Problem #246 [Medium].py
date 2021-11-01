@@ -13,3 +13,18 @@
 # --------------------------------------------------------------------------------
 #
 #
+def make_words_curcle(words_list: list[str]) -> bool:
+    def make_words_curcle_helper(array: list[str], words_curcle: list[str]) -> list[str]:
+        if not array:
+            if words_curcle[0][0] == words_curcle[-1][-1]:
+                yield
+        for i, item in enumerate(array):
+            if words_curcle[-1][-1] == item[0]:
+                yield from make_words_curcle_helper(array[:i] + array[i + 1:], words_curcle + [item])
+
+    for curcle in make_words_curcle_helper(words_list[1:], [words_list[0]]):
+        return True
+    return False
+
+
+assert make_words_curcle(['chair', 'height', 'racket', 'touch', 'tunic']) is True
