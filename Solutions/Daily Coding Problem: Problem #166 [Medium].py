@@ -37,10 +37,10 @@ class iterator(object):
     def has_next(self,):
         for i in range(self.position[0], len(self.array)):
             if i == self.position[0]:
-                for j in range(self.position[1] + 1, len(self.array[i])):
+                for _ in range(self.position[1] + 1, len(self.array[i])):
                     return True
             else:
-                for j in range(0, len(self.array[i])):
+                for _ in range(0, len(self.array[i])):
                     return True
         return False
 
