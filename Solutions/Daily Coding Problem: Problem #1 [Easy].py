@@ -14,6 +14,7 @@
 #
 #
 
+
 def find_numbers(array, goal):
     past_number = []
     for items in array:
