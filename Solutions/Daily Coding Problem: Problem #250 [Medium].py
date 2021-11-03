@@ -25,9 +25,6 @@
 # --------------------------------------------------------------------------------
 #
 #
-from itertools import product
-
-
 class CryptarithmeticPuzzle(object):
     def __init__(self, string: str):
         self.first_statment = None
