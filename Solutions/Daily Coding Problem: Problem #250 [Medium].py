@@ -43,7 +43,7 @@ class CryptarithmeticPuzzle(object):
                 self.symbol = first_part_of_string[i]
                 break
 
-    def solve_puzzle(self) -> dict:
+    def solve_puzzle(self) -> dict | None:
         def make_possible_dict(pointer=0) -> dict:
             if pointer == len(letter_list):
                 yield letters_dict
