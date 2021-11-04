@@ -19,6 +19,7 @@
 #
 #
 def zig_zag_print(word: str, k: int) -> None:
+    assert k > 1, "k should be > 1"
     word_list = [[] for _ in range(k)]
     len_block = k * 2 - 2
     number_of_blocks = len(word)//len_block
