@@ -29,12 +29,11 @@ def zig_zag_print(word: str, k: int) -> None:
         indent = 1
         for j in range(k):
             if j == 0:
-                if start_block + j < len(word):
-                    string = word[start_block: end_block][j]
-                    string = string + " " * (len_block - 1)
-                    word_list[j].append(string)
-                else:
+                if start_block + j >= len(word):
                     break
+                string = word[start_block: end_block][j]
+                string = string + " " * (len_block - 1)
+                word_list[j].append(string)
             elif j == k - 1:
                 if start_block + j < len(word):
                     string = word[start_block: end_block][j]
@@ -42,13 +41,12 @@ def zig_zag_print(word: str, k: int) -> None:
                     string = string + " " * (len_block // 2 - 1)
                     word_list[j].append(string)
             else:
-                if start_block + j < len(word):
-                    string1 = word[start_block: end_block][j]
-                    string1 = " " * indent + string1
-                    string1 = string1.ljust(len_block // 2, " ")
-                    word_list[j].append(string1 + ' ')
-                else:
+                if start_block + j >= len(word):
                     break
+                string1 = word[start_block: end_block][j]
+                string1 = " " * indent + string1
+                string1 = string1.ljust(len_block // 2, " ")
+                word_list[j].append(string1 + ' ')
                 if start_block + (len_block - j) < len(word):
                     string2 = word[start_block: end_block][len_block - j]
                     string2 = string2 + " " * (indent - 1)
