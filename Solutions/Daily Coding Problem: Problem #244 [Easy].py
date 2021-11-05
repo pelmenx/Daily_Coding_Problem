@@ -21,7 +21,7 @@
 #
 #
 def Sieve_of_Eratosthenes(N):
-    numbers_set = set([i for i in range(2, N)])
+    numbers_set = set(range(2, N))
     for i in range(2, N // 2 + 1):
         j = 2
         while j * i < N:
