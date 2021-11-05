@@ -15,9 +15,8 @@
 #
 def make_words_curcle(words_list: list[str]) -> bool:
     def make_words_curcle_helper(array: list[str], words_curcle: list[str]) -> None:
-        if not array:
-            if words_curcle[0][0] == words_curcle[-1][-1]:
-                yield
+        if not array and words_curcle[0][0] == words_curcle[-1][-1]:
+            yield
         for i, item in enumerate(array):
             if words_curcle[-1][-1] == item[0]:
                 yield from make_words_curcle_helper(array[:i] + array[i + 1:], words_curcle + [item])
@@ -27,4 +26,5 @@ def make_words_curcle(words_list: list[str]) -> bool:
     return False
 
 
-assert make_words_curcle(['chair', 'height', 'racket', 'touch', 'tunic']) is True
+assert make_words_curcle(
+    ['chair', 'height', 'racket', 'touch', 'tunic']) is True
