@@ -49,16 +49,22 @@ class CryptarithmeticPuzzle(object):
                 yield letters_dict
             else:
                 for i in possible_digits:
-                    if i not in letters_dict.values():
-                        if (letter_list[pointer] == self.first_statment[0] or letter_list[pointer] == self.second_statment[0] or letter_list[pointer] == self.result[0]) and i == 0:
-                            continue
-                        else:
-                            letters_dict[letter_list[pointer]] = i
-                            yield from make_possible_dict(pointer + 1)
-                            letters_dict.pop(letter_list[pointer])
+                    if i not in letters_dict.values() and (
+                        letter_list[pointer]
+                        not in [
+                            self.first_statment[0],
+                            self.second_statment[0],
+                            self.result[0],
+                        ]
+                        or i != 0
+                    ):
+                        letters_dict[letter_list[pointer]] = i
+                        yield from make_possible_dict(pointer + 1)
+                        letters_dict.pop(letter_list[pointer])
 
         possible_digits = [x for x in range(0, 10)]
-        letter_list = list(set(self.first_statment + self.second_statment + self.result))
+        letter_list = list(
+            set(self.first_statment + self.second_statment + self.result))
         letters_dict = {}
         for dictionary in make_possible_dict():
             first = ""
@@ -75,4 +81,5 @@ class CryptarithmeticPuzzle(object):
 
 
 puzzle = CryptarithmeticPuzzle("SEND+MORE=MONEY")
-assert puzzle.solve_puzzle() == {'S': 9, 'E': 5, 'N': 6, 'D': 7, 'M': 1, 'O': 0, 'R': 8, 'Y': 2}
+assert puzzle.solve_puzzle() == {'S': 9, 'E': 5,
+                                 'N': 6, 'D': 7, 'M': 1, 'O': 0, 'R': 8, 'Y': 2}
